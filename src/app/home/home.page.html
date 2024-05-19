@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title> Movies </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (isLoading){
+  <ion-list>
+    @for (i of dummyArray; track i) {
+    <ion-item lines="none" class="ion-padding-bottom">
+      <ion-avatar slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-avatar>
+      <ion-skeleton-text animated style="height: 40px"></ion-skeleton-text>
+    </ion-item>
+    }
+  </ion-list>
+  } @else if (error) {
+  <ion-alert
+    handler="Error"
+    [message]="error"
+    isOpen="true"
+    [buttons]="['Ok']"
+  />
+  }
+
+  <ion-list>
+    @for (movie of movies; track movie.id) {
+    <ion-item button [routerLink]="['/details', movie.id]">
+      <ion-avatar slot="start">
+        <img [src]="imageBaseUrl + '/w92/' + movie.imageUrl" />
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h3>{{movie.title}}</h3>
+      </ion-label>
+    </ion-item>
+    } @empty { @if(!isLoading) {
+    <ion-item lines="none">
+      <ion-label class="ion-text-center"
+        >No movies, try to add somenthing</ion-label
+      >
+    </ion-item>
+    } }
+  </ion-list>
+</ion-content>

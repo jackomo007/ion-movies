@@ -1,0 +1,7 @@
+{
+  "name": "ion-movies",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

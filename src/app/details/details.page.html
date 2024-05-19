@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movie()?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (movie(); as movie) {
+  <ion-card>
+    <img
+      class="center-image"
+      [alt]="movie?.title"
+      [src]="imageBaseUrl + '/w400/' + movie.imageUrl"
+      height="400"
+    />
+    <ion-card-header>
+      <ion-card-title> {{ movie?.title }} </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content> {{ movie.description }} </ion-card-content>
+  </ion-card>
+  }
+</ion-content>
